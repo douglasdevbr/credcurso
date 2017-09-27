@@ -1,0 +1,7 @@
+<resources>
+
+    <dimen name="text_size_s">16sp</dimen>
+    <dimen name="button_height">48dp</dimen>
+
+
+</resources>

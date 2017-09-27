@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardElevation="2dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="220dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="0.76"
+                            android:orientation="vertical">
+
+                            <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+                                android:id="@+id/tvdeisgnation"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:hint="UI DESIGNER"
+                                android:textColor="@color/black" />
+
+                            <com.pixelnx.sam.jobportal.utils.CustomTextview
+                                android:id="@+id/tvOrganisation"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:hint="Organization Name"
+                                android:textColor="@color/gray" />
+
+                        </LinearLayout>
+
+                        <com.pixelnx.sam.jobportal.utils.CustomButton
+                            android:id="@+id/ViewBtn"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/button_background"
+                            android:text="VIEW"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="0.35"
+                        android:background="@drawable/textview_bg"
+                        android:gravity="center">
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextview
+                            android:id="@+id/tvExperience"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:drawableLeft="@drawable/brief"
+                            android:drawablePadding="8dp"
+                            android:gravity="center"
+                            android:hint="2-3" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="0.35"
+                        android:background="@drawable/textview_bg"
+                        android:gravity="center">
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextview
+                            android:id="@+id/tvLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:drawableLeft="@drawable/paris"
+                            android:drawablePadding="8dp"
+                            android:gravity="center"
+                            android:hint="paris" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                  android:layout_margin="10dp"
+                    android:weightSum="1">
+
+                    <com.pixelnx.sam.jobportal.utils.CustomTextview
+                        android:id="@+id/tvSkills"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:drawableLeft="@drawable/shae"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llApplied"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/container"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="-20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/applied_back"
+        android:gravity="right">
+
+        <com.pixelnx.sam.jobportal.utils.CustomTextview
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:padding="2dp"
+            android:gravity="center_vertical"
+            android:text="Applied"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</RelativeLayout>

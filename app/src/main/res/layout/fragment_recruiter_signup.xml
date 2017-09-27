@@ -1,0 +1,174 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.pixelnx.sam.jobportal.Fragment.Recruiter_Reg_Fragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+
+                <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="YOUR EMAIL" />
+
+
+                <com.pixelnx.sam.jobportal.utils.CustomEdittext
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="textEmailAddress" />
+
+                <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+
+                    android:text="ORGANIZATION NAME" />
+
+                <com.pixelnx.sam.jobportal.utils.CustomEdittext
+                    android:id="@+id/etOrgName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+
+                    android:inputType="text" />
+
+
+                <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="MOBILE NO." />
+
+                <com.pixelnx.sam.jobportal.utils.CustomEdittext
+                    android:id="@+id/etMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+
+                    android:inputType="number" />
+
+                <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+                    android:id="@+id/tvpassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="PASSWORD" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <com.pixelnx.sam.jobportal.utils.CustomEdittext
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="0.8"
+                        android:background="@android:color/transparent"
+                        android:inputType="textPassword" />
+
+                    <ImageView
+                        android:id="@+id/text_visible1"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center_vertical"
+                        android:src="@drawable/eye_close" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/windowBackground" />
+
+                <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="CONFIRM PASSWORD" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <com.pixelnx.sam.jobportal.utils.CustomEdittext
+                        android:id="@+id/etCPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="0.8"
+                        android:background="@android:color/transparent"
+                        android:inputType="textPassword" />
+
+                    <ImageView
+                        android:id="@+id/text_visible2"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center_vertical"
+                        android:src="@drawable/eye_close" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/windowBackground" />
+
+                <com.pixelnx.sam.jobportal.utils.CustomButton
+                    android:id="@+id/SignupBtn"
+                    android:layout_width="180dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/button_background"
+                    android:text="SIGN UP"
+                    android:textColor="@color/white" />
+
+                <com.pixelnx.sam.jobportal.utils.CustomTextview
+                    android:id="@+id/tvAlreadyRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
+
+
+

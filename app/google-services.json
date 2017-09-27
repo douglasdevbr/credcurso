@@ -1,0 +1,113 @@
+{
+  "project_info": {
+    "project_number": "912810639629",
+    "firebase_url": "https://news-portal-ab1d6.firebaseio.com",
+    "project_id": "news-portal-ab1d6",
+    "storage_bucket": "news-portal-ab1d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912810639629:android:ce7e50cb957bc467",
+        "android_client_info": {
+          "package_name": "com.pixelnx.newsportal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912810639629-rglmfkqti9dmdvvamkgtopm3kik4ngpb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pixelnx.newsportal",
+            "certificate_hash": "bd968704591df6f34256c33099107f2714fd0206"
+          }
+        },
+        {
+          "client_id": "912810639629-d1i110fo8lrt624g9ubqnvkfqk3il16v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYBGiPhOG4yOhfF1sednJPczBk6-iJVKk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912810639629-d1i110fo8lrt624g9ubqnvkfqk3il16v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "912810639629-nla09t2vn3ic9heavhdnujovdbji62k3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.NewsPortal"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912810639629:android:7a4bb2483fbd1c22",
+        "android_client_info": {
+          "package_name": "com.pixelnx.sam.jobportal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912810639629-iqlmuie74qaqoa5qh3t63nmvjr6v0dsf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pixelnx.sam.jobportal",
+            "certificate_hash": "ce3cf7e7dd1429aebb740beb75aa31b86526db29"
+          }
+        },
+        {
+          "client_id": "912810639629-d1i110fo8lrt624g9ubqnvkfqk3il16v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYBGiPhOG4yOhfF1sednJPczBk6-iJVKk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912810639629-d1i110fo8lrt624g9ubqnvkfqk3il16v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "912810639629-nla09t2vn3ic9heavhdnujovdbji62k3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.NewsPortal"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

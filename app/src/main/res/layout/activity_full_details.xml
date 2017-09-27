@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/header_bg">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="0.1">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:padding="6dp"
+                android:scaleType="center"
+                android:src="@drawable/back_white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="25dp"
+            android:layout_weight="0.7">
+
+            <com.pixelnx.sam.jobportal.utils.CustomTextHeader
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Job Detail"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header"
+        android:background="@color/tv_bg"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="220dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="0.76"
+                        android:orientation="vertical">
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+                            android:id="@+id/tvSpecialn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:hint="UI DESIGNER"
+                            android:textColor="@color/colorPrimary" />
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextview
+                            android:id="@+id/tvOrganisation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:hint="Organization Name" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="0.35"
+                        android:background="@drawable/tv_bg"
+                        android:gravity="center">
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextview
+                            android:id="@+id/tvExperience"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:drawableLeft="@drawable/brief"
+                            android:drawablePadding="8dp"
+                            android:gravity="center"
+                            android:hint="2-3 year" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="0.35"
+                        android:background="@drawable/tv_bg"
+                        android:gravity="center">
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextview
+                            android:id="@+id/tvLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:drawableLeft="@drawable/paris"
+                            android:drawablePadding="8dp"
+                            android:gravity="center"
+                            android:hint="paris" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <com.pixelnx.sam.jobportal.utils.CustomTextview
+                        android:id="@+id/tvSkills"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="5dp"
+                        android:drawableLeft="@drawable/shae"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:text="sdgfshgd" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical">
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Job posted: " />
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Job Type: " />
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Designation: "
+                            android:textSize="14dp" />
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+
+                            android:text="Qualification: " />
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Specialization: " />
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Last date of application: " />
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Job Description: "
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical">
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextview
+                            android:id="@+id/tvJobposted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Hello everyone" />
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextview
+                            android:id="@+id/tvJobtype"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="vdvd" />
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextview
+                            android:id="@+id/tvDesignation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="senior Developer" />
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextview
+                            android:id="@+id/tvQualification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Be/IT" />
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextview
+                            android:id="@+id/tvSpecialization"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Specelization" />
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextview
+                            android:id="@+id/tvlastDOA"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="dgdfgdfg" />
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextview
+
+                            android:id="@+id/tvJobDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:lineSpacingMultiplier="1.3"
+                            android:text="gfdfgfd" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Job Hiring Process: "
+                        android:visibility="gone" />
+
+                    <ListView
+                        android:id="@+id/lvProcess"
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:visibility="gone">
+
+                    </ListView>
+                </LinearLayout>
+
+
+                <com.pixelnx.sam.jobportal.utils.CustomButton
+                    android:id="@+id/btnApply"
+                    android:layout_width="180dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/button_background"
+                    android:text="APPLY"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
