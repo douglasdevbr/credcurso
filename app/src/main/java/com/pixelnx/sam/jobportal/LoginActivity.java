@@ -3,6 +3,7 @@ package com.pixelnx.sam.jobportal;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Context mContext;
     private SharedPrefrence prefrence;
     private TelephonyManager telephonyManager;
+    SharedPreferences userDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         mContext = LoginActivity.this;
         prefrence = SharedPrefrence.getInstance(mContext);
-        Log.e("LOGIN_TOKAN", "my token: " + prefrence.getValue(Consts.TOKAN));
+
+        userDetails = LoginActivity.this.getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        Log.e("tokensss", userDetails.getString(Consts.TOKAN, ""));
         telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         Log.e("LOGIN_ID", "my id: " + telephonyManager.getDeviceId());
         init();
@@ -226,7 +230,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 params.put(Consts.VALUE, ProjectUtils.getEditTextValue(etEmail));
                 params.put(Consts.PASSWORD, ProjectUtils.getEditTextValue(etPassword));
                 params.put(Consts.DEVICE_ID, "" + telephonyManager.getDeviceId());
-                params.put(Consts.DEVICE_TOKEN, prefrence.getValue(Consts.TOKAN));
+                params.put(Consts.DEVICE_TOKEN, userDetails.getString(Consts.TOKAN, ""));
                 params.put(Consts.DEVICE_TYPE, "Android");
                 Log.e("seeker_login", params.toString());
                 return params;
@@ -279,7 +283,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 params.put(Consts.VALUE_RECRUITER, ProjectUtils.getEditTextValue(etEmail));
                 params.put(Consts.PASSWORD, ProjectUtils.getEditTextValue(etPassword));
                 params.put(Consts.DEVICE_ID, "" + telephonyManager.getDeviceId());
-                params.put(Consts.DEVICE_TOKEN, prefrence.getValue(Consts.TOKAN));
+                params.put(Consts.DEVICE_TOKEN, userDetails.getString(Consts.TOKAN, ""));
                 params.put(Consts.DEVICE_TYPE, "Android");
                 Log.e("recuter_login", params.toString());
                 return params;
@@ -297,7 +301,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void clickClose() {
         new AlertDialog.Builder(this)
-                .setIcon(R.mipmap.ic_launcher)
+                .setIcon(R.mipmap.logo)
                 .setTitle(getString(R.string.app_name))
                 .setMessage(getString(R.string.msg_dialog))
                 .setPositiveButton(getString(R.string.yes_dialog), new DialogInterface.OnClickListener() {

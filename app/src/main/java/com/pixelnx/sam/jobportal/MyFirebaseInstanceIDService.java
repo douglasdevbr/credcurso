@@ -16,6 +16,8 @@
 
 package com.pixelnx.sam.jobportal;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -27,20 +29,26 @@ import com.pixelnx.sam.jobportal.utils.Consts;
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     private static final String TAG = "MyFirebaseIIDService";
     String refreshedToken;
-    SharedPrefrence prefrence;
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyPrefs" ;
     @Override
     public void onTokenRefresh() {
-        prefrence = SharedPrefrence.getInstance(this);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         try {
             refreshedToken = FirebaseInstanceId.getInstance().getToken();
             Log.d("Firbase id login", "Refreshed token: " + refreshedToken);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        prefrence.setValue(Consts.TOKAN, refreshedToken);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+        editor.putString(Consts.TOKAN, refreshedToken);
+        editor.commit();
+
 
         sendRegistrationToServer(refreshedToken);
-        Log.e(TAG, "my token: " + prefrence.getValue(Consts.TOKAN));
+        SharedPreferences userDetails = MyFirebaseInstanceIDService.this.getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        Log.e(TAG, "my token: " + userDetails.getString(Consts.TOKAN,""));
 
 
     }

@@ -8,78 +8,36 @@
     android:orientation="vertical"
     tools:context="com.pixelnx.sam.jobportal.Activity.JobsView">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@drawable/header_bg">
 
-        <LinearLayout
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:padding="6dp"
+            android:scaleType="center"
+            android:src="@drawable/back_white" />
+
+
+        <com.pixelnx.sam.jobportal.utils.CustomTextHeader
+            android:id="@+id/tvJobs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp">
-
-            <ImageView
-                android:id="@+id/ivBack"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:padding="6dp"
-                android:scaleType="center"
-                android:src="@drawable/back_white" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="0.6"
-            android:gravity="center">
-
-            <com.pixelnx.sam.jobportal.utils.CustomTextHeader
-                android:id="@+id/tvJobs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Jobs"
-                android:textColor="@color/white" />
-            />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="3dp"
-            android:gravity="center_horizontal|right"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/search_icon"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:scaleType="center"
-                android:src="@drawable/search" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="10dp"
-            android:gravity="center_horizontal|end"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/filter_icon"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:scaleType="center"
-                android:src="@drawable/filter" />
-        </LinearLayout>
+            android:layout_centerInParent="true"
+            android:text="Jobs"
+            android:textColor="@color/white" />
+        />
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvJobsView"

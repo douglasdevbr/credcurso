@@ -36,6 +36,7 @@ import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+
 /**
  * Created by shubham on 28/8/17.
  */
@@ -93,6 +94,8 @@ public class JobApplication_adapter extends RecyclerView.Adapter<JobApplication_
 
                         }
                     }, SweetAlertDialog.WARNING_TYPE);
+
+
                 }
             }
         });
@@ -162,7 +165,7 @@ public class JobApplication_adapter extends RecyclerView.Adapter<JobApplication_
                                 jobApplicationDTOList.remove(lastPosition);
                                 if (jobApplicationDTOList.size() == 0) {
                                     jobApplication.llIcon.setVisibility(View.VISIBLE);
-                                }else {
+                                } else {
                                     jobApplication.llIcon.setVisibility(View.GONE);
                                 }
                                 notifyDataSetChanged();

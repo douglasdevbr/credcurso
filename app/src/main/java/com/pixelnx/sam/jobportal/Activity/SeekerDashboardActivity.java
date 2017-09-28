@@ -251,7 +251,7 @@ public class SeekerDashboardActivity extends AppCompatActivity {
 
     public void clickClose() {
         new AlertDialog.Builder(this)
-                .setIcon(R.mipmap.ic_launcher)
+                .setIcon(R.mipmap.logo)
                 .setTitle(getString(R.string.app_name))
                 .setMessage(getString(R.string.msg_dialog))
                 .setPositiveButton(getString(R.string.yes_dialog), new DialogInterface.OnClickListener() {
@@ -279,7 +279,7 @@ public class SeekerDashboardActivity extends AppCompatActivity {
 
     public void logout() {
         new AlertDialog.Builder(this)
-                .setIcon(R.mipmap.ic_launcher)
+                .setIcon(R.mipmap.logo)
                 .setTitle(getString(R.string.app_name))
                 .setMessage(getString(R.string.logout_dialog))
                 .setPositiveButton(getString(R.string.yes_dialog), new DialogInterface.OnClickListener() {
