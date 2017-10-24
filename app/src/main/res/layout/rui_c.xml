@@ -6,45 +6,36 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@drawable/header_bg">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="0.1">
+
 
             <ImageView
                 android:id="@+id/ivBack"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="5dp"
                 android:padding="6dp"
                 android:scaleType="center"
                 android:src="@drawable/back_white" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="25dp"
-            android:layout_weight="0.7">
 
             <com.pixelnx.sam.jobportal.utils.CustomTextHeader
                 android:id="@+id/tvHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Job Detail"
-                android:textColor="@color/white" />
-        </LinearLayout>
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"/>
 
-    </LinearLayout>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,7 +73,7 @@
                                 android:id="@+id/tvName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="MODI"
+                                android:hint=""
                                 android:textColor="@color/colorPrimary" />
 
                         </LinearLayout>
@@ -110,7 +101,7 @@
                                 android:drawableLeft="@drawable/brief"
                                 android:drawablePadding="5dp"
                                 android:gravity="center"
-                                android:hint="2-3 year" />
+                                android:hint="" />
 
                         </LinearLayout>
 
@@ -131,7 +122,7 @@
                                 android:drawableLeft="@drawable/paris"
                                 android:drawablePadding="5dp"
                                 android:gravity="center"
-                                android:hint="paris" />
+                                android:hint="" />
 
                         </LinearLayout>
 
@@ -151,7 +142,7 @@
                             android:drawableLeft="@drawable/shae"
                             android:drawablePadding="5dp"
                             android:gravity="center_vertical"
-                            android:hint="Photoshop,java etc" />
+                            android:hint="" />
 
 
                     </LinearLayout>
@@ -260,6 +251,22 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="0.6"
                             android:text="" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+
+                        <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
+                            android:id="@+id/tvResume"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.4"
+                            android:textColor="@color/colorPrimary"
+                            android:text="@string/resume" />
+
                     </LinearLayout>
 
                     <LinearLayout

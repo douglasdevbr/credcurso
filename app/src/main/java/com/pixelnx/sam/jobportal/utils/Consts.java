@@ -6,11 +6,11 @@ package com.pixelnx.sam.jobportal.utils;
 
 public interface Consts {
     public static String JOB_PORTAL = "JobPortal";
-    public static String BASE_URL = "http://phpstack-104300-296238.cloudwaysapps.com/api/";
+    //public static String BASE_URL = "http://phpstack-104300-296238.cloudwaysapps.com/api/";
+    public static String BASE_URL = "http://jobportal.kamleshyadav.net/admin/api/";
     public static String IS_REGISTER_SEEKER = "is_register_seeker";
     public static String IS_REGISTER_RECRUITER = "is_register_recruiter";
 
-    //http://phpstack-104300-296238.cloudwaysapps.com/api/fill-seeker-profile
     /*API DETAILS*/
     public static String POST_METHOD = "POST";
     public static String SIGNUP_API_SEEKER = "register-new-seeker";
@@ -50,6 +50,7 @@ public interface Consts {
     String FLAG = "flag";
     String TOKAN = "tokan";
     String TAG_GUEST = "guest";
+    String SINGLE_JOB_DTO = "singleJobDTO";
 
     /*PROJECT DATA*/
 

@@ -68,5 +68,8 @@
     <string name="val_role_type">Please select Role Type</string>
     <string name="val_certification">Please enter your certification</string>
     <string name="val_upload_resume">Please upload your resume</string>
+    <string name="val_upload_resume_a">Please select only pdf, doc or docx file..</string>
     <string name="guest_login">Before appling this job, you have to login first. Are you sure to login?</string>
+    <string name="download_dialog">Do you want to download resume please click download or Only see to click view.</string>
+    <string name="resume"><u>Resume</u></string>
 </resources>

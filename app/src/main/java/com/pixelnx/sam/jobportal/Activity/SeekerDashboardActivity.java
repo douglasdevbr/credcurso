@@ -55,6 +55,7 @@ public class SeekerDashboardActivity extends AppCompatActivity {
     public static int navItemIndex = 0;
     private UserSeekerDTO userSeekerDTO;
     int guest_tag = 0;
+    private boolean shouldLoadHomeFragOnBackPress = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class SeekerDashboardActivity extends AppCompatActivity {
         userSeekerDTO = prefrence.getUserDTO(Consts.SEEKER_DTO);
         mHandler = new Handler();
         displayFirebaseRegId();
-        if (getIntent().hasExtra(Consts.TAG_GUEST)){
+        if (getIntent().hasExtra(Consts.TAG_GUEST)) {
             guest_tag = getIntent().getIntExtra(Consts.TAG_GUEST, 0);
 
         }
@@ -78,11 +79,12 @@ public class SeekerDashboardActivity extends AppCompatActivity {
         tvJobs = (CustomTextHeader) findViewById(R.id.tvJobs);
         search_icon = (ImageView) findViewById(R.id.search_icon);
         filter_icon = (ImageView) findViewById(R.id.filter_icon);
-        if (guest_tag==1){
+        if (guest_tag == 1) {
             menuLeftIV.setVisibility(View.VISIBLE);
-        }else if(guest_tag==2){
+        } else if (guest_tag == 2) {
             menuLeftIV.setVisibility(View.GONE);
-        }else {
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        } else {
             menuLeftIV.setVisibility(View.VISIBLE);
         }
         menuLeftIV.setOnClickListener(new View.OnClickListener() {
@@ -245,7 +247,45 @@ public class SeekerDashboardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        clickClose();
+        if (guest_tag == 1) {
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawers();
+                return;
+            }
+            if (shouldLoadHomeFragOnBackPress) {
+
+                if (navItemIndex != 0) {
+                    navItemIndex = 0;
+                    CURRENT_TAG = TAG_HOME;
+                    loadHomeFragment();
+                    return;
+                }
+            }
+
+            clickClose();
+
+        } else if (guest_tag == 2) {
+            Intent in = new Intent(mcontext, LoginActivity.class);
+            startActivity(in);
+            finish();
+        } else {
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawers();
+                return;
+            }
+            if (shouldLoadHomeFragOnBackPress) {
+
+                if (navItemIndex != 0) {
+                    navItemIndex = 0;
+                    CURRENT_TAG = TAG_HOME;
+                    loadHomeFragment();
+                    return;
+                }
+            }
+            clickClose();
+
+        }
+
     }
 
 

@@ -224,6 +224,32 @@ public class ProjectUtils {
         }
 
     }
+    public static void showAlertDialogOne(Context context, String title,
+                                       String msg, String btnText,
+                                       DialogInterface.OnClickListener listener) {
+
+        if (listener == null)
+            listener = new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface paramDialogInterface,
+                                    int paramInt) {
+                    paramDialogInterface.dismiss();
+                    paramDialogInterface.dismiss();
+                }
+            };
+
+        Builder builder = new Builder(context);
+        builder.setTitle(title);
+        builder.setMessage(msg);
+        builder.setPositiveButton(btnText, listener);
+        dialog = builder.create();
+        dialog.setCancelable(true);
+        try {
+            dialog.show();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+    }
 
     public static void datePicker(final Calendar calendar, final Context context, final EditText editText, final boolean code) {
 

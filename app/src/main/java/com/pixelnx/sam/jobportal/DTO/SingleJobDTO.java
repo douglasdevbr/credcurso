@@ -45,7 +45,7 @@ public class SingleJobDTO implements Serializable {
         this.data = data;
     }
 
-    public class Data  implements Serializable {
+    public class Data implements Serializable {
         String id = "";
         String full_name = "";
         String email = "";
@@ -55,6 +55,9 @@ public class SingleJobDTO implements Serializable {
         String token = "";
         String created_at = "";
         String updated_at = "";
+        String device_id = "";
+        String device_token = "";
+        String device_type = "";
         Profile profile;
 
         public String getId() {
@@ -129,6 +132,31 @@ public class SingleJobDTO implements Serializable {
             this.updated_at = updated_at;
         }
 
+        public String getDevice_id() {
+            return device_id;
+        }
+
+        public void setDevice_id(String device_id) {
+            this.device_id = device_id;
+        }
+
+        public String getDevice_token() {
+            return device_token;
+        }
+
+        public void setDevice_token(String device_token) {
+            this.device_token = device_token;
+        }
+
+        public String getDevice_type() {
+            return device_type;
+        }
+
+        public void setDevice_type(String device_type) {
+            this.device_type = device_type;
+        }
+
+
         public Profile getProfile() {
             return profile;
         }
@@ -137,8 +165,11 @@ public class SingleJobDTO implements Serializable {
             this.profile = profile;
         }
 
-        public class  Profile implements Serializable {
 
+        public class Profile implements Serializable {
+
+            String avtar = "";
+            String resume = "";
             String id = "";
             String seeker_id = "";
             String gender = "";
@@ -164,6 +195,22 @@ public class SingleJobDTO implements Serializable {
             String seeker_role_type = "";
             String seeker_prefered_location = "";
             String seeker_apply_date = "";
+
+            public String getAvtar() {
+                return avtar;
+            }
+
+            public void setAvtar(String avtar) {
+                this.avtar = avtar;
+            }
+
+            public String getResume() {
+                return resume;
+            }
+
+            public void setResume(String resume) {
+                this.resume = resume;
+            }
 
             public String getId() {
                 return id;

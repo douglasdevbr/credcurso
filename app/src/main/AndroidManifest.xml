@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.pixelnx.sam.jobportal">
 
-
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -34,18 +33,17 @@
 
     <!-- Supports Screens -->
     <!-- Permission to use camera - required -->
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
-        tools:replace="android:icon"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.pixelnx.jobportal.fileprovider"
+            android:authorities="com.pixelnx.sam.jobportal.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -71,38 +69,38 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.pixelnx.sam.jobportal.RegisterActivity"
+            android:name=".RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.pixelnx.sam.jobportal.LoginActivity"
+            android:name=".LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.pixelnx.sam.jobportal.Activity.SeekerDashboardActivity"
+            android:name=".Activity.SeekerDashboardActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.pixelnx.sam.jobportal.utils.MainFragment"
+            android:name=".utils.MainFragment"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.pixelnx.sam.jobportal.Activity.FullDetailsActivity"
+            android:name=".Activity.FullDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.pixelnx.sam.jobportal.Activity.RecruiterDashboardActivity"
+            android:name=".Activity.RecruiterDashboardActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.pixelnx.sam.jobportal.Activity.ForgotPasswordActivity"
+            android:name=".Activity.ForgotPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.pixelnx.sam.jobportal.Activity.Recruiter_PostJob_Activity"
+            android:name=".Activity.Recruiter_PostJob_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.pixelnx.sam.jobportal.Activity.JobsView"
+            android:name=".Activity.JobsView"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.pixelnx.sam.jobportal.Activity.SingleJob"
+            android:name=".Activity.SingleJob"
             android:screenOrientation="portrait" />
 
         <meta-data
@@ -110,8 +108,8 @@
             android:value="3db7741514824365d36d79a39c9867a3bd2a28bd" />
 
         <activity
-            android:name="com.pixelnx.sam.jobportal.Activity.FilterActivity"
-            android:screenOrientation="portrait"></activity>
+            android:name=".Activity.FilterActivity"
+            android:screenOrientation="portrait" />
 
         <!-- [START firebase_service] -->
         <service android:name=".MyFirebaseMessagingService">
@@ -125,7 +123,8 @@
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
-        </service>        <!-- [END firebase_iid_service] -->
+        </service> <!-- [END firebase_iid_service] -->
+        <activity android:name=".Activity.PdfView"></activity>
     </application>
 
 </manifest>

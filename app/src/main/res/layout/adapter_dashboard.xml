@@ -49,7 +49,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:hint="UI DESIGNER"
+                                android:hint=""
                                 android:textColor="@color/black" />
 
                             <com.pixelnx.sam.jobportal.utils.CustomTextview
@@ -57,7 +57,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
-                                android:hint="Organization Name"
+                                android:hint=""
                                 android:textColor="@color/gray" />
 
                         </LinearLayout>
@@ -93,7 +93,7 @@
                             android:drawableLeft="@drawable/brief"
                             android:drawablePadding="8dp"
                             android:gravity="center"
-                            android:hint="2-3" />
+                            android:hint="" />
 
                     </LinearLayout>
 
@@ -113,7 +113,7 @@
                             android:drawableLeft="@drawable/paris"
                             android:drawablePadding="8dp"
                             android:gravity="center"
-                            android:hint="paris" />
+                            android:hint="" />
 
                     </LinearLayout>
 
@@ -129,7 +129,7 @@
                     <com.pixelnx.sam.jobportal.utils.CustomTextview
                         android:id="@+id/tvSkills"
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
+                        android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/shae"
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical" />

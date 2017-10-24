@@ -5,24 +5,19 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/llClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp">
+        android:padding="5dp"
+       >
 
         <CheckBox
             android:id="@+id/cbFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:layout_gravity="center"
             android:backgroundTintMode="screen"
-            android:buttonTint="#2bb2d2" />
+            android:buttonTint="#3F51B5" />
 
-        <com.pixelnx.sam.jobportal.utils.CustomTextview
-            android:id="@+id/tvDesignation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:text="Jr. Manager" />
     </LinearLayout>
 </LinearLayout>

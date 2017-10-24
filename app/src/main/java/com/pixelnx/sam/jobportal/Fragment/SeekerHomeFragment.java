@@ -70,7 +70,6 @@ public class SeekerHomeFragment extends Fragment implements SwipeRefreshLayout.O
     private String id = "";
     HashMap<Integer, ArrayList<DummyFilterDTO>> map;
     private ArrayList<DummyFilterDTO> dummyFilterList;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,6 +78,7 @@ public class SeekerHomeFragment extends Fragment implements SwipeRefreshLayout.O
                 getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         prefrence = SharedPrefrence.getInstance(getActivity());
         map = ProjectUtils.map;
+        map.clear();
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 
         recyclerview = (RecyclerView) view.findViewById(R.id.recyclerview);
@@ -103,6 +103,8 @@ public class SeekerHomeFragment extends Fragment implements SwipeRefreshLayout.O
             public void onClick(View view) {
                 if (searchLayout.getVisibility() == View.VISIBLE) {
                     etSearch.setText("");
+                    inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
                     seekerDashboardActivity.search_icon.setImageResource(R.drawable.search);
                     searchLayout.setVisibility(View.GONE);
                     showjobs();
@@ -110,6 +112,8 @@ public class SeekerHomeFragment extends Fragment implements SwipeRefreshLayout.O
 
                 } else {
                     seekerDashboardActivity.search_icon.setImageResource(R.drawable.close);
+                    etSearch.requestFocus();
+                    inputManager.showSoftInput(etSearch, InputMethodManager.SHOW_IMPLICIT);
                     searchLayout.setVisibility(View.VISIBLE);
                 }
 
@@ -200,6 +204,8 @@ public class SeekerHomeFragment extends Fragment implements SwipeRefreshLayout.O
 
     @Override
     public void onRefresh() {
+        map.clear();
+
         showjobs();
     }
 
@@ -290,7 +296,7 @@ public class SeekerHomeFragment extends Fragment implements SwipeRefreshLayout.O
         try {
             for (int i = 0; i < dummyList.size(); i++) {
                 if (dummyList.get(i).isChecked()) {
-                    roleArray.put(dummyList.get(i).getName());
+                    roleArray.put(dummyList.get(i).getId());
 
                 }
 

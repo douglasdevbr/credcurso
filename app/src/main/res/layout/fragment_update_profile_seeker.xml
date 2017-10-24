@@ -358,7 +358,7 @@
                 <com.pixelnx.sam.jobportal.utils.CustomEdittext
                     android:id="@+id/etFileUpload"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:drawablePadding="30dp"
                     android:drawableRight="@drawable/upload"
                     android:editable="false" />

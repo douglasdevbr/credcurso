@@ -1,13 +1,16 @@
 package com.pixelnx.sam.jobportal.Adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 
+import com.pixelnx.sam.jobportal.Activity.Recruiter_PostJob_Activity;
 import com.pixelnx.sam.jobportal.DTO.DummyFilterDTO;
 import com.pixelnx.sam.jobportal.R;
 import com.pixelnx.sam.jobportal.utils.CustomTextview;
@@ -21,7 +24,7 @@ import java.util.ArrayList;
 public class AdapterFilterItem extends BaseAdapter {
     private Context mContext;
     private ArrayList<DummyFilterDTO> dummyFilterList;
-
+    private Typeface font;
     public AdapterFilterItem(Context mContext, ArrayList<DummyFilterDTO> dummyFilterList) {
         this.mContext = mContext;
         this.dummyFilterList = dummyFilterList;
@@ -47,10 +50,14 @@ public class AdapterFilterItem extends BaseAdapter {
         final ViewHolder holder = new ViewHolder();
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View itemView = inflater.inflate(R.layout.adapter_filter_item, null);
-        holder.tvDesignation = (CustomTextview) itemView.findViewById(R.id.tvDesignation);
         holder.cbFilter = (CheckBox) itemView.findViewById(R.id.cbFilter);
+        holder.llClick = (LinearLayout) itemView.findViewById(R.id.llClick);
+        font = Typeface.createFromAsset(
+                mContext.getAssets(),
+                "Raleway-Light.ttf");
 
-        holder.tvDesignation.setText(dummyFilterList.get(position).getName());
+        holder.cbFilter.setText(dummyFilterList.get(position).getName());
+        holder.cbFilter.setTypeface(font);
         if (dummyFilterList.get(position).isChecked()) {
             holder.cbFilter.setChecked(true);
         } else {
@@ -74,7 +81,7 @@ public class AdapterFilterItem extends BaseAdapter {
     }
 
     static class ViewHolder {
-        public CustomTextview tvDesignation;
         public CheckBox cbFilter;
+        public LinearLayout llClick;
     }
 }

@@ -30,7 +30,6 @@
             android:textColorHint="@color/white"
             android:textCursorDrawable="@drawable/text_cursor_cyan"
             android:textSize="14sp" />
-
         <ImageView
             android:id="@+id/ivSearch"
             android:layout_width="0dp"

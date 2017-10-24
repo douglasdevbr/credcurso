@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import com.pixelnx.sam.jobportal.Activity.FilterActivity;
 import com.pixelnx.sam.jobportal.R;
 import com.pixelnx.sam.jobportal.utils.CustomTextSubHeader;
+import com.pixelnx.sam.jobportal.utils.CustomTextviewBold;
 
 import java.util.ArrayList;
 
@@ -50,7 +51,7 @@ public class AdapterFilterCategory extends BaseAdapter {
         final ViewHolder holder = new ViewHolder();
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View itemView = inflater.inflate(R.layout.adapter_filter_category, null);
-        holder.tvCategory = (CustomTextSubHeader) itemView.findViewById(R.id.tvCategory);
+        holder.tvCategory = (CustomTextviewBold) itemView.findViewById(R.id.tvCategory);
         holder.llClick = (RelativeLayout) itemView.findViewById(R.id.llClick);
         holder.ivArrow = (ImageView) itemView.findViewById(R.id.ivArrow);
 
@@ -80,7 +81,7 @@ public class AdapterFilterCategory extends BaseAdapter {
 
 
     static class ViewHolder {
-        public CustomTextSubHeader tvCategory;
+        public CustomTextviewBold tvCategory;
         public RelativeLayout llClick;
         public ImageView ivArrow;
     }

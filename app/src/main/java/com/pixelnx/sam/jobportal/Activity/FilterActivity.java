@@ -27,6 +27,8 @@ import com.pixelnx.sam.jobportal.utils.Consts;
 import com.pixelnx.sam.jobportal.utils.ProjectUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -135,6 +137,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
                             savetomap();
                             if (map.containsKey(0)) {
                                 dummyFilterList = map.get(0);
+                                shortlistlowtohigh();
                                 adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
                                 lvItem.setAdapter(adapterFilterItem);
 
@@ -162,6 +165,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
 
             if (map.containsKey(0)) {
                 dummyFilterList = map.get(0);
+                shortlistlowtohigh();
                 adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
                 lvItem.setAdapter(adapterFilterItem);
 
@@ -169,6 +173,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
         } else if (pos == 1) {
             if (map.containsKey(1)) {
                 dummyFilterList = map.get(1);
+                shortlistlowtohigh();
                 adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
                 lvItem.setAdapter(adapterFilterItem);
 
@@ -176,12 +181,14 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
         } else if (pos == 2) {
             if (map.containsKey(2)) {
                 dummyFilterList = map.get(2);
+                shortlistlowtohigh();
                 adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
                 lvItem.setAdapter(adapterFilterItem);
             }
         } else if (pos == 3) {
             if (map.containsKey(3)) {
                 dummyFilterList = map.get(3);
+                shortlistlowtohigh();
                 adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
                 lvItem.setAdapter(adapterFilterItem);
 
@@ -189,6 +196,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
         } else if (pos == 4) {
             if (map.containsKey(4)) {
                 dummyFilterList = map.get(4);
+                shortlistlowtohigh();
                 adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
                 lvItem.setAdapter(adapterFilterItem);
             }
@@ -196,6 +204,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
         } else if (pos == 5) {
             if (map.containsKey(5)) {
                 dummyFilterList = map.get(5);
+                shortlistlowtohigh();
                 adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
                 lvItem.setAdapter(adapterFilterItem);
             }
@@ -203,6 +212,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
         } else if (pos == 6) {
             if (map.containsKey(6)) {
                 dummyFilterList = map.get(6);
+                shortlistlowtohigh();
                 adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
                 lvItem.setAdapter(adapterFilterItem);
             }
@@ -218,6 +228,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
         for (int i = 0; i < job_typesList.size(); i++) {
             dummyFilterList.add(new DummyFilterDTO(job_typesList.get(i).getId(), job_typesList.get(i).getJob_type()));
         }
+        
         adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
         lvItem.setAdapter(adapterFilterItem);
         map.put(0, dummyFilterList);
@@ -228,6 +239,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
         for (int i = 0; i < locationsList.size(); i++) {
             dummyFilterList.add(new DummyFilterDTO(locationsList.get(i).getId(), locationsList.get(i).getLocation_name()));
         }
+        
         adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
         lvItem.setAdapter(adapterFilterItem);
         map.put(1, dummyFilterList);
@@ -238,6 +250,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
         for (int i = 0; i < job_by_roles_List.size(); i++) {
             dummyFilterList.add(new DummyFilterDTO(job_by_roles_List.get(i).getId(), job_by_roles_List.get(i).getJob_by_role()));
         }
+        
         adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
         lvItem.setAdapter(adapterFilterItem);
         map.put(2, dummyFilterList);
@@ -249,6 +262,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
         for (int i = 0; i < qualificationsList.size(); i++) {
             dummyFilterList.add(new DummyFilterDTO(qualificationsList.get(i).getId(), qualificationsList.get(i).getQualification()));
         }
+        
         adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
         lvItem.setAdapter(adapterFilterItem);
         map.put(3, dummyFilterList);
@@ -257,6 +271,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
         for (int i = 0; i < exprinceYearDTOList.size(); i++) {
             dummyFilterList.add(new DummyFilterDTO(exprinceYearDTOList.get(i).getId(), exprinceYearDTOList.get(i).getYear()));
         }
+        
         adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
         lvItem.setAdapter(adapterFilterItem);
         map.put(4, dummyFilterList);
@@ -268,6 +283,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
         for (int i = 0; i < specializationList.size(); i++) {
             dummyFilterList.add(new DummyFilterDTO(specializationList.get(i).getId(), specializationList.get(i).getSpecialization()));
         }
+        
         adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
         lvItem.setAdapter(adapterFilterItem);
         map.put(5, dummyFilterList);
@@ -278,6 +294,7 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
         for (int i = 0; i < area_of_sectorsList.size(); i++) {
             dummyFilterList.add(new DummyFilterDTO(area_of_sectorsList.get(i).getId(), area_of_sectorsList.get(i).getArea_of_sector()));
         }
+        
         adapterFilterItem = new AdapterFilterItem(mContext, dummyFilterList);
         lvItem.setAdapter(adapterFilterItem);
         map.put(6, dummyFilterList);
@@ -297,4 +314,15 @@ public class FilterActivity extends AppCompatActivity implements View.OnClickLis
                 break;
         }
     }
+
+    public void shortlistlowtohigh() {
+        Collections.sort(dummyFilterList, new Comparator<DummyFilterDTO>() {
+
+            public int compare(DummyFilterDTO obj1, DummyFilterDTO obj2) {
+                return obj1.getName().compareToIgnoreCase(obj2.getName());
+
+            }
+        });
+    }
+
 }

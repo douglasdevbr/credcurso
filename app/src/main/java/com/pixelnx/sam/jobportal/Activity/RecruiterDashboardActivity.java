@@ -47,7 +47,7 @@ public class RecruiterDashboardActivity extends AppCompatActivity {
     private Handler mHandler;
     public static int navItemIndex = 0;
     private UserRecruiterDTO userRecruiterDTO;
-
+    private boolean shouldLoadHomeFragOnBackPress = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -206,6 +206,19 @@ public class RecruiterDashboardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawers();
+            return;
+        }
+        if (shouldLoadHomeFragOnBackPress) {
+
+            if (navItemIndex != 0) {
+                navItemIndex = 0;
+                CURRENT_TAG = TAG_POST_JOB;
+                loadHomeFragment();
+                return;
+            }
+        }
         clickClose();
     }
 

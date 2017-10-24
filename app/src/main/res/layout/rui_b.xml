@@ -31,7 +31,7 @@
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Varun" />
+                    android:hint="" />
 
                 <com.pixelnx.sam.jobportal.utils.CustomTextview
                     android:id="@+id/tvRole"
@@ -40,7 +40,7 @@
                     android:layout_marginTop="3dp"
                     android:drawableLeft="@drawable/designation"
                     android:drawablePadding="5dp"
-                    android:hint="UI DESIGNER" />
+                    android:hint="" />
 
                 <com.pixelnx.sam.jobportal.utils.CustomTextview
                     android:id="@+id/tvMobile"
@@ -49,7 +49,7 @@
                     android:layout_marginTop="3dp"
                     android:drawableLeft="@drawable/number"
                     android:drawablePadding="5dp"
-                    android:hint="8109973009" />
+                    android:hint="" />
 
             </LinearLayout>
 

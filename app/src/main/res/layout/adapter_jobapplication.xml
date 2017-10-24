@@ -50,7 +50,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:padding="3dp"
-                        android:text="100"
+                        android:text=""
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="10dp" />

@@ -23,6 +23,7 @@
         app:itemIconTint="@color/white"
         android:background="@drawable/splash_bg"
         android:fitsSystemWindows="true"
+
         app:menu="@menu/menu_navigation_recruiter" />
 
 

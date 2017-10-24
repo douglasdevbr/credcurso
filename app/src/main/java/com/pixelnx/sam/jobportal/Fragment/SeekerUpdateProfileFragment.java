@@ -490,8 +490,10 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
         etPassYear.setText(userSeekerDTO.getData().getSeeker_profile().getYear_of_passing());
         etCgpa.setText(userSeekerDTO.getData().getSeeker_profile().getPercentage_or_cgpa());
         etCertification.setText(userSeekerDTO.getData().getSeeker_profile().getCertification());
-        etFileUpload.setText("My Resume");
-
+        etFileUpload.setText(userSeekerDTO.getData().getSeeker_profile().getResume());
+        String filenameArray[] = userSeekerDTO.getData().getSeeker_profile().getResume().split("\\.");
+        extensionResume = filenameArray[filenameArray.length - 1];
+        Log.e("Resume",extensionResume);
         ImageLoader.getInstance().displayImage(userSeekerDTO.getData().getSeeker_profile().getAvtar(), IVimage, options);
 
 
@@ -606,13 +608,31 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
                 etCertification.requestFocus();
                 return false;
             }
-        } else if (!ProjectUtils.IsEditTextValidation(etFileUpload)) {
-            etFileUpload.setError(getResources().getString(R.string.val_upload_resume));
-            etFileUpload.requestFocus();
+        } else if (!validateResume()) {
             return false;
         }
         return true;
     }
+
+    public boolean validateResume() {
+        if (etFileUpload.getText().toString().trim().length() <= 0) {
+            etFileUpload.setError(getResources().getString(R.string.val_upload_resume));
+            etFileUpload.requestFocus();
+            return false;
+        } else {
+            if (!extensionResume.equalsIgnoreCase("pdf")||extensionResume.equalsIgnoreCase("doc")||extensionResume.equalsIgnoreCase("docx")){
+                etFileUpload.setError(getResources().getString(R.string.val_upload_resume_a));
+                etFileUpload.requestFocus();
+                return false;
+            }else {
+                etFileUpload.setError("");
+                etFileUpload.clearFocus();
+                return true;
+            }
+
+        }
+    }
+
 
     //
     //

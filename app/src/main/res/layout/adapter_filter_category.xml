@@ -12,7 +12,7 @@
         android:orientation="horizontal"
         android:padding="12dp">
 
-        <com.pixelnx.sam.jobportal.utils.CustomTextSubHeader
+        <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
             android:id="@+id/tvCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

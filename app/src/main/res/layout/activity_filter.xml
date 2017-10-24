@@ -55,7 +55,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.4"
             android:background="@color/l_gray"
             android:orientation="vertical">
 
@@ -70,7 +70,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.6"
             android:background="@color/white"
             android:orientation="vertical">
 
