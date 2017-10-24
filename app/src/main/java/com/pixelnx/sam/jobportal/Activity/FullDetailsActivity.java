@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -86,7 +87,7 @@ public class FullDetailsActivity extends AppCompatActivity implements View.OnCli
         } else {
             btnApply.setVisibility(View.VISIBLE);
         }
-      String yourString = data.getJob_discription().replaceAll("\\s+", " ");
+        String yourString = data.getJob_discription().replaceAll("\\s+", " ");
         tvSpecialn.setText(data.getSpecialization());
         tvOrganisation.setText(data.getPosted_recruiter().getOrganisation_name());
         tvExperience.setText(data.getExperience());
