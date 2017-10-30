@@ -3,11 +3,13 @@ package com.pixelnx.sam.jobportal.Fragment;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,6 +40,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.StringRequestListener;
+import com.androidnetworking.interfaces.UploadProgressListener;
 import com.cocosw.bottomsheet.BottomSheet;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -56,6 +63,7 @@ import com.pixelnx.sam.jobportal.https.UploadFileToServer;
 import com.pixelnx.sam.jobportal.network.NetworkManager;
 import com.pixelnx.sam.jobportal.preferences.SharedPrefrence;
 import com.pixelnx.sam.jobportal.utils.Consts;
+import com.pixelnx.sam.jobportal.utils.ConvertUriToFilePath;
 import com.pixelnx.sam.jobportal.utils.CustomButton;
 import com.pixelnx.sam.jobportal.utils.CustomEdittext;
 import com.pixelnx.sam.jobportal.utils.CustomTextSubHeader;
@@ -64,17 +72,24 @@ import com.pixelnx.sam.jobportal.utils.MainFragment;
 import com.pixelnx.sam.jobportal.utils.MonthYearPicker;
 import com.pixelnx.sam.jobportal.utils.ProjectUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -82,6 +97,7 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class SeekerUpdateProfileFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+    private static final String TAG = SeekerUpdateProfileFragment.class.getSimpleName();
     private LinearLayout LLexperince;
     private CircleImageView IVimage;
     private RadioGroup RGGender, RGExperience;
@@ -95,7 +111,6 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
     private CustomTextSubHeader tvUsername;
     private UserSeekerDTO userSeekerDTO;
     View view;
-
     private ArrayList<GeneralDTO.Locations> locationsList = new ArrayList<>();
     private ArrayList<GeneralDTO.Area_of_sectors> area_of_sectorsList = new ArrayList<>();
     private ArrayList<GeneralDTO.Qualifications> qualificationsList = new ArrayList<>();
@@ -125,13 +140,12 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
     String pathOfImage, pathOfResume, extensionIMG, extensionResume;
     Bitmap bm;
     ImageCompression imageCompression;
-    byte[] resultByteArray;
-    byte[] resultByteArrayRESUME;
-    UploadFileToServer uploadFileToServer;
     private int PICK_PDF_REQUEST = 5005;
 
     private MonthYearPicker myp;
     private Typeface font;
+    private File image;
+    private File resume;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -493,7 +507,7 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
         etFileUpload.setText(userSeekerDTO.getData().getSeeker_profile().getResume());
         String filenameArray[] = userSeekerDTO.getData().getSeeker_profile().getResume().split("\\.");
         extensionResume = filenameArray[filenameArray.length - 1];
-        Log.e("Resume",extensionResume);
+        Log.e("Resume", extensionResume);
         ImageLoader.getInstance().displayImage(userSeekerDTO.getData().getSeeker_profile().getAvtar(), IVimage, options);
 
 
@@ -537,7 +551,7 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
             return;
         } else {
             if (NetworkManager.isConnectToInternet(getActivity())) {
-                UpdateProfile();
+                uploadProfile();
 
             } else {
                 ProjectUtils.showToast(getActivity(), getResources().getString(R.string.internet_connection));
@@ -608,11 +622,13 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
                 etCertification.requestFocus();
                 return false;
             }
-        } else if (!validateResume()) {
+        }
+        if (!validateResume()) {
             return false;
         }
         return true;
     }
+
 
     public boolean validateResume() {
         if (etFileUpload.getText().toString().trim().length() <= 0) {
@@ -620,116 +636,23 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
             etFileUpload.requestFocus();
             return false;
         } else {
-            if (!extensionResume.equalsIgnoreCase("pdf")||extensionResume.equalsIgnoreCase("doc")||extensionResume.equalsIgnoreCase("docx")){
-                etFileUpload.setError(getResources().getString(R.string.val_upload_resume_a));
-                etFileUpload.requestFocus();
-                return false;
-            }else {
-                etFileUpload.setError("");
+            if (extensionResume.equalsIgnoreCase("pdf") || extensionResume.equalsIgnoreCase("doc") || extensionResume.equalsIgnoreCase("docx")) {
+                etFileUpload.setError(null);
                 etFileUpload.clearFocus();
-                return true;
+                return true;//only true
+            } else {
+                etFileUpload.requestFocus();
+                etFileUpload.setError(getResources().getString(R.string.val_upload_resume_a));
+                return false;
             }
 
         }
     }
 
-
     //
     //
     //
     //
-
-    public void UpdateProfile() {
-        ProjectUtils.showProgressDialog(getActivity(), true, "Please wait...");
-        uploadFileToServer = new UploadFileToServer(Consts.FILL_SEEKER_PROFILE, getParam(), getByteParam(), getFileNames(), getActivity());
-        uploadFileToServer.execute(Consts.POST_METHOD);
-        uploadFileToServer.setOnTaskFinishedEvent(new UploadFileToServer.AsyncResponse() {
-
-            @Override
-            public void processFinish(boolean output, String message, BaseDTO galleryDTO) {
-                ProjectUtils.pauseProgressDialog();
-
-                if (output) {
-                    ProjectUtils.pauseProgressDialog();
-                    ProjectUtils.showToast(getActivity(), message);
-                    userSeekerDTO = (UserSeekerDTO) galleryDTO;
-
-                    prefrence.setUserDTO(userSeekerDTO, Consts.SEEKER_DTO);
-
-                    Log.e("Seek", userSeekerDTO.getMessage() + "   " + userSeekerDTO.getData().getProfile_update());
-                } else {
-                    ProjectUtils.pauseProgressDialog();
-                    if (message != null && message.length() > 0) {
-                        ProjectUtils.showToast(getActivity(), message);
-                    } else {
-                        // ProjectUtils.showToast(getActivity(), getResources().getString(R.string.server_error));
-                    }
-
-                }
-            }
-
-        });
-    }
-
-
-    public ContentValues getParam() {
-        ContentValues values = new ContentValues();
-        values.put(Consts.SEEKER_ID, userSeekerDTO.getData().getId());
-        if (RBmale.isChecked()) {
-            values.put(Consts.GENDER, "Male");
-            Log.e("MALE", "MALE");
-
-        } else if (RBfemale.isChecked()) {
-            values.put(Consts.GENDER, "Female");
-            Log.e("FEMALE", "FEMALE");
-        }
-        values.put(Consts.CURRENT_ADDRESS, ProjectUtils.getEditTextValue(etCurrentAddress));
-        values.put(Consts.PREFERRED_LOCATION, locationsList.get(SpPrefLoc.getSelectedItemPosition()).getId() + "");
-        values.put(Consts.JOB_TYPE, job_typesList.get(SpJobType.getSelectedItemPosition()).getId() + "");
-        values.put(Consts.SEEKER_QUALIFICATION, qualificationsList.get(SpQualification.getSelectedItemPosition()).getId() + "");
-        values.put(Consts.PERCENTAGE_OR_CGPA, ProjectUtils.getEditTextValue(etCgpa));
-        values.put(Consts.YEAR_OF_PASSING, ProjectUtils.getEditTextValue(etPassYear));
-        values.put(Consts.AREA_OF_SECTOR, area_of_sectorsList.get(SpAreaOfSector.getSelectedItemPosition()).getId() + "");
-        if (RBFresher.isChecked()) {
-            values.put(Consts.WORK_EXPERIENCE, "Fresher");
-            Log.e("fresher", "fresher");
-            values.put(Consts.EXPERIENCE_IN_YEAR, "");
-            values.put(Consts.EXPERIENCE_IN_MONTHS, "");
-            values.put(Consts.SPECIALIZATION, "");
-            values.put(Consts.ROLE_TYPE, "");
-            values.put(Consts.CERTIFICATION, "");
-
-        } else if (RBExperinced.isChecked()) {
-            values.put(Consts.WORK_EXPERIENCE, "Experienced");
-            Log.e("Experienced", "Experienced");
-            values.put(Consts.EXPERIENCE_IN_YEAR, exprinceYearDTOList.get(SpTotalExperienceYear.getSelectedItemPosition()).getYear() + "");
-            values.put(Consts.EXPERIENCE_IN_MONTHS, exprinceMonthDTOList.get(SpToatlExperienceinMonth.getSelectedItemPosition()).getMonth() + "");
-            values.put(Consts.SPECIALIZATION, specializationList.get(SpSpecialization.getSelectedItemPosition()).getId() + "");
-            values.put(Consts.ROLE_TYPE, job_by_roles_List.get(SpRoleType.getSelectedItemPosition()).getId() + "");
-            values.put(Consts.CERTIFICATION, ProjectUtils.getEditTextValue(etCertification));
-        }
-
-
-        Log.e("UPDATE_PROFILE", values.toString());
-        return values;
-    }
-
-    public ContentValues getByteParam() {
-        ContentValues values = new ContentValues();
-        values.put(Consts.AVTAR, resultByteArray);
-        values.put(Consts.RESUME, resultByteArrayRESUME);
-
-        Log.e("img", values.toString());
-        return values;
-    }
-
-    public ContentValues getFileNames() {
-        ContentValues values = new ContentValues();
-        values.put(Consts.AVTAR, extensionIMG);
-        values.put(Consts.RESUME, extensionResume);
-        Log.e("PDF", values.toString());
-        return values;
-    }
 
 
     @Override
@@ -798,19 +721,62 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
         return mediaFile;
     }
 
+    private File getOutputMediaFile1(int type) {
+        String root = Environment.getExternalStorageDirectory().toString();
+
+        File mediaStorageDir = new File(root, Consts.JOB_PORTAL);
+
+        /**Create the storage directory if it does not exist*/
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                return null;
+            }
+        }
+
+        /**Create a media file name*/
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File mediaFile;
+        if (type == 1) {
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+                    Consts.JOB_PORTAL + timeStamp + ".pdf");
+
+        } else {
+            return null;
+        }
+
+        return mediaFile;
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PICK_PDF_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            filePath = data.getData();
-            pathOfResume = filePath.getPath();
-            etFileUpload.setText(pathOfResume);
-            String filenameArray[] = pathOfResume.split("\\.");
-            extensionResume = filenameArray[filenameArray.length - 1];
-            resultByteArrayRESUME = convertPDFToByteArray(pathOfResume);
+
+        if (requestCode == PICK_PDF_REQUEST && resultCode == RESULT_OK) {
+            try {
+                filePath = data.getData();
+
+                Log.e("front tempUri", "" + filePath);
+                if (filePath != null) {
+                    Log.e("PDFFILEZILA", "" + filePath);
+                    pathOfResume = filePath.getPath();
+                    String s = ConvertUriToFilePath.getPathFromURI(getActivity(), filePath);
+                    etFileUpload.setText(s);
+                    String filenameArray[] = s.split("\\.");
+                    extensionResume = filenameArray[filenameArray.length - 1];
+                    Log.e("extensionResume", "" + extensionResume);
+
+                    resume = new File(ConvertUriToFilePath.getPathFromURI(getActivity(), filePath));
+
+
+                } else {
+
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         }
+
         if (requestCode == CROP_CAMERA_IMAGE) {
 
             if (data != null) {
@@ -819,15 +785,13 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
                 try {
                     //bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), resultUri);
                     pathOfImage = picUri.getPath();
-
-
                     imageCompression = new ImageCompression(getActivity());
                     imageCompression.execute(pathOfImage);
                     imageCompression.setOnTaskFinishedEvent(new ImageCompression.AsyncResponse() {
                         @Override
                         public void processFinish(String imagePath) {
                             updateUserImage(IVimage, "file://" + imagePath);
-
+                            image = new File(ConvertUriToFilePath.getPathFromURI(getActivity(), Uri.parse("file://" + imagePath)));
                             String filenameArray[] = imagePath.split("\\.");
                             extensionIMG = filenameArray[filenameArray.length - 1];
 
@@ -838,7 +802,8 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
                                 bm = BitmapFactory.decodeFile(imagePath, bmOptions);
                                 ByteArrayOutputStream buffer = new ByteArrayOutputStream(bm.getWidth() * bm.getHeight());
                                 bm.compress(Bitmap.CompressFormat.PNG, 100, buffer);
-                                resultByteArray = buffer.toByteArray();
+
+                                //resultByteArray = buffer.toByteArray();
 
                                 bm.recycle();
                             } catch (Exception e) {
@@ -859,18 +824,18 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
 
             if (data != null) {
                 picUri = Uri.parse(data.getExtras().getString("resultUri"));
-
+                Log.e("image 1", picUri + "");
                 try {
                     bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), picUri);
                     pathOfImage = picUri.getPath();
-
                     imageCompression = new ImageCompression(getActivity());
                     imageCompression.execute(pathOfImage);
                     imageCompression.setOnTaskFinishedEvent(new ImageCompression.AsyncResponse() {
                         @Override
                         public void processFinish(String imagePath) {
                             updateUserImage(IVimage, "file://" + imagePath);
-                            Log.e("image", imagePath);
+                            image = new File(ConvertUriToFilePath.getPathFromURI(getActivity(), Uri.parse("file://" + imagePath)));
+                            Log.e("image 2", imagePath);
                             String filenameArray[] = imagePath.split("\\.");
                             extensionIMG = filenameArray[filenameArray.length - 1];
                             try {
@@ -878,7 +843,7 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
                                 bm = BitmapFactory.decodeFile(imagePath, bmOptions);
                                 ByteArrayOutputStream buffer = new ByteArrayOutputStream(bm.getWidth() * bm.getHeight());
                                 bm.compress(Bitmap.CompressFormat.PNG, 100, buffer);
-                                resultByteArray = buffer.toByteArray();
+                                // resultByteArray = buffer.toByteArray();
 
                                 bm.recycle();
                             } catch (Exception e) {
@@ -895,10 +860,14 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
 
         if (requestCode == PICK_FROM_CAMERA && resultCode == RESULT_OK) {
             if (picUri != null) {
+
                 picUri = Uri.parse(prefrence.getValue(Consts.IMAGE_URI_CAMERA));
+                // image = new File(ConvertUriToFilePath.getPathFromURI(getActivity(), picUri));
                 startCropping(picUri, CROP_CAMERA_IMAGE);
             } else {
                 picUri = Uri.parse(prefrence.getValue(Consts.IMAGE_URI_CAMERA));
+                // image = new File(ConvertUriToFilePath.getPathFromURI(getActivity(), picUri));
+
                 startCropping(picUri, CROP_CAMERA_IMAGE);
             }
         }
@@ -910,6 +879,8 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
 
                 Log.e("front tempUri", "" + tempUri);
                 if (tempUri != null) {
+                    //    image = new File(ConvertUriToFilePath.getPathFromURI(getActivity(), tempUri));
+                    Log.e("image 2", image + "");
                     startCropping(tempUri, CROP_GALLERY_IMAGE);
                 } else {
 
@@ -919,7 +890,10 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
             }
         }
 
-
+//image 2: /storage/emulated/0/WhatsApp/Media/WhatsApp Images/IMG-20171025-WA0001.jpg
+        //image 1: file:///data/user/0/com.pixelnx.sam.jobportal/cache/cropped
+        //image 2: /storage/emulated/0/JobPortal/IMG_1508928459963.jpg
+        //tempUri: content://com.android.providers.media.documents/document/image%3A10538
     }
 
     public void startCropping(Uri uri, int requestCode) {
@@ -954,12 +928,31 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
     }
 
     private void showFileChooser() {
-        Intent intent = new Intent();
-        intent.setType("application/pdf");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Pdf"), PICK_PDF_REQUEST);
+        if (ProjectUtils.hasPermissionInManifest(getActivity(), PICK_PDF_REQUEST, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+            File file = getOutputMediaFile1(1);
+            if (!file.exists()) {
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            picUri = Uri.fromFile(file);
+
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            intent.setType("application/pdf");
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            startActivityForResult(Intent.createChooser(intent, "Select Pdf"), PICK_PDF_REQUEST);
+
+        }
+
+
     }
 
+
+/*
     private static byte[] convertPDFToByteArray(String str) {
 
         InputStream inputStream = null;
@@ -991,6 +984,7 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
         }
         return baos.toByteArray();
     }
+*/
 
     @Override
     public void onAttach(Activity activity) {
@@ -999,4 +993,122 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
 
     }
 
+/*
+    public byte[] getImageByte() {
+
+        try {
+            Bitmap bitmap = ((BitmapDrawable) IVimage.getDrawable()).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            resultByteArray = baos.toByteArray();
+        } catch (Exception e) {
+            //   System.err.printf("Failed while reading bytes from %s: %s", url.toExternalForm(), e.getMessage());
+            e.printStackTrace();
+            // Perform any other exception handling that's appropriate.
+        }
+        return resultByteArray;
+    }
+*/
+
+    public void uploadProfile() {
+        ProjectUtils.showProgressDialog(getActivity(), true, "Please wait...");
+        AndroidNetworking.upload(Consts.BASE_URL + Consts.FILL_SEEKER_PROFILE)
+                .addMultipartFile(Consts.AVTAR, image)
+                .addMultipartFile(Consts.RESUME, resume)
+                .addMultipartParameter(getParms())
+                .setTag("uploadTest")
+                .setPriority(Priority.IMMEDIATE)
+                .build()
+                .setUploadProgressListener(new UploadProgressListener() {
+                    @Override
+                    public void onProgress(long bytesUploaded, long totalBytes) {
+                        Log.e("Byte", bytesUploaded + "  !!! " + totalBytes);
+                    }
+                })
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        ProjectUtils.pauseProgressDialog();
+                        Log.e("POST", response.toString());
+                        try {
+                            JSONObject jObj = new JSONObject(response);
+
+
+                            userSeekerDTO = new Gson().fromJson(jObj.toString(), UserSeekerDTO.class);
+
+                            if (userSeekerDTO.isStatus()) {
+                                ProjectUtils.showToast(getActivity(), userSeekerDTO.getMessage());
+                                prefrence.setUserDTO(userSeekerDTO, Consts.SEEKER_DTO);
+                            } else {
+                                ProjectUtils.showToast(getActivity(), userSeekerDTO.getMessage());
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        ProjectUtils.pauseProgressDialog();
+                        Log.e(TAG, "error : " + anError.getErrorBody() + " " + anError.getResponse() + " " + anError.getErrorDetail() + " " + anError.getMessage());
+
+                    }
+                });
+    }
+
+    public Map<String, String> getParms() {
+
+        HashMap<String, String> values = new HashMap<>();
+        values.put(Consts.SEEKER_ID, userSeekerDTO.getData().getId());
+        if (RBmale.isChecked()) {
+            values.put(Consts.GENDER, "Male");
+            Log.e("MALE", "MALE");
+
+        } else if (RBfemale.isChecked()) {
+            values.put(Consts.GENDER, "Female");
+            Log.e("FEMALE", "FEMALE");
+        }
+        values.put(Consts.CURRENT_ADDRESS, ProjectUtils.getEditTextValue(etCurrentAddress));
+        values.put(Consts.PREFERRED_LOCATION, locationsList.get(SpPrefLoc.getSelectedItemPosition()).getId() + "");
+        values.put(Consts.JOB_TYPE, job_typesList.get(SpJobType.getSelectedItemPosition()).getId() + "");
+        values.put(Consts.SEEKER_QUALIFICATION, qualificationsList.get(SpQualification.getSelectedItemPosition()).getId() + "");
+        values.put(Consts.PERCENTAGE_OR_CGPA, ProjectUtils.getEditTextValue(etCgpa));
+        values.put(Consts.YEAR_OF_PASSING, ProjectUtils.getEditTextValue(etPassYear));
+        values.put(Consts.AREA_OF_SECTOR, area_of_sectorsList.get(SpAreaOfSector.getSelectedItemPosition()).getId() + "");
+        if (RBFresher.isChecked()) {
+            values.put(Consts.WORK_EXPERIENCE, "Fresher");
+            Log.e("fresher", "fresher");//Fresher
+            values.put(Consts.EXPERIENCE_IN_YEAR, "");
+            values.put(Consts.EXPERIENCE_IN_MONTHS, "");
+            values.put(Consts.SPECIALIZATION, "");
+            values.put(Consts.ROLE_TYPE, "");
+            values.put(Consts.CERTIFICATION, "");
+
+        } else if (RBExperinced.isChecked()) {
+            values.put(Consts.WORK_EXPERIENCE, "Experienced");
+            Log.e("Experienced", "Experienced"); //Experienced
+            values.put(Consts.EXPERIENCE_IN_YEAR, exprinceYearDTOList.get(SpTotalExperienceYear.getSelectedItemPosition()).getYear() + "");
+            values.put(Consts.EXPERIENCE_IN_MONTHS, exprinceMonthDTOList.get(SpToatlExperienceinMonth.getSelectedItemPosition()).getMonth() + "");
+            values.put(Consts.SPECIALIZATION, specializationList.get(SpSpecialization.getSelectedItemPosition()).getId() + "");
+            values.put(Consts.ROLE_TYPE, job_by_roles_List.get(SpRoleType.getSelectedItemPosition()).getId() + "");
+            values.put(Consts.CERTIFICATION, ProjectUtils.getEditTextValue(etCertification));
+        }
+
+
+        Log.e("UPDATE_PROFILE", values.toString());
+        return values;
+    }
 }
+/*
+*
+* 10-26 17:27:04.611 20950-20950/com.pixelnx.sam.jobportal E/front tempUri: content://com.estrongs.files/storage/emulated/0/Download/PerfectLawyer.docx
+10-26 17:27:04.611 20950-20950/com.pixelnx.sam.jobportal E/PDFFILEZILA: content://com.estrongs.files/storage/emulated/0/Download/PerfectLawyer.docx
+10-26 17:27:04.622 20950-20950/com.pixelnx.sam.jobportal E/extensionResume: docx
+
+
+10-26 17:27:38.687 20950-20950/com.pixelnx.sam.jobportal E/front tempUri: content://com.android.providers.downloads.documents/document/raw%3A%2Fstorage%2Femulated%2F0%2FDownload%2Fvarun.doc
+10-26 17:27:38.687 20950-20950/com.pixelnx.sam.jobportal E/PDFFILEZILA: content://com.android.providers.downloads.documents/document/raw%3A%2Fstorage%2Femulated%2F0%2FDownload%2Fvarun.doc
+10-26 17:27:38.698 20950-20950/com.pixelnx.sam.jobportal E/extensionResume: doc
+*/
