@@ -47,7 +47,7 @@ public class AdapterDashboard extends RecyclerView.Adapter<AdapterDashboard.Main
     @Override
     public void onBindViewHolder(Mainholder holder, final int position) {
 
-        holder.tvdeisgnation.setText(dataArrayList.get(position).getSpecialization());
+        holder.tvdeisgnation.setText(dataArrayList.get(position).getJob_by_roles());
         holder.tvOrganisation.setText(dataArrayList.get(position).getPosted_recruiter().getOrganisation_name());
         holder.tvExperience.setText(dataArrayList.get(position).getExperience());
         holder.tvLocation.setText(dataArrayList.get(position).getJob_location());

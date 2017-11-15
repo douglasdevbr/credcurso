@@ -623,9 +623,9 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
                 return false;
             }
         }
-        if (!validateResume()) {
+       /* if (!validateResume()) {
             return false;
-        }
+        }*/
         return true;
     }
 
@@ -794,7 +794,7 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
                             image = new File(ConvertUriToFilePath.getPathFromURI(getActivity(), Uri.parse("file://" + imagePath)));
                             String filenameArray[] = imagePath.split("\\.");
                             extensionIMG = filenameArray[filenameArray.length - 1];
-
+                            Log.e("MY image", image + "");
                             try {
                                 // bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), resultUri);
 
@@ -836,6 +836,7 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
                             updateUserImage(IVimage, "file://" + imagePath);
                             image = new File(ConvertUriToFilePath.getPathFromURI(getActivity(), Uri.parse("file://" + imagePath)));
                             Log.e("image 2", imagePath);
+                            Log.e("MY image", image + "");
                             String filenameArray[] = imagePath.split("\\.");
                             extensionIMG = filenameArray[filenameArray.length - 1];
                             try {
@@ -890,10 +891,6 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
             }
         }
 
-//image 2: /storage/emulated/0/WhatsApp/Media/WhatsApp Images/IMG-20171025-WA0001.jpg
-        //image 1: file:///data/user/0/com.pixelnx.sam.jobportal/cache/cropped
-        //image 2: /storage/emulated/0/JobPortal/IMG_1508928459963.jpg
-        //tempUri: content://com.android.providers.media.documents/document/image%3A10538
     }
 
     public void startCropping(Uri uri, int requestCode) {
@@ -1013,8 +1010,7 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
     public void uploadProfile() {
         ProjectUtils.showProgressDialog(getActivity(), true, "Please wait...");
         AndroidNetworking.upload(Consts.BASE_URL + Consts.FILL_SEEKER_PROFILE)
-                .addMultipartFile(Consts.AVTAR, image)
-                .addMultipartFile(Consts.RESUME, resume)
+                .addMultipartFile(getFileParms())
                 .addMultipartParameter(getParms())
                 .setTag("uploadTest")
                 .setPriority(Priority.IMMEDIATE)
@@ -1056,6 +1052,20 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
 
                     }
                 });
+    }
+
+    public Map<String, File> getFileParms() {
+        HashMap<String, File> valuesFile = new HashMap<>();
+        if (image != null) {
+            valuesFile.put(Consts.AVTAR, image);
+        }
+        if (resume != null) {
+            valuesFile.put(Consts.RESUME, resume);
+        }
+
+
+        Log.e("UPDATE_PROFILE_FILE", valuesFile.toString());
+        return valuesFile;
     }
 
     public Map<String, String> getParms() {
@@ -1101,14 +1111,3 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
         return values;
     }
 }
-/*
-*
-* 10-26 17:27:04.611 20950-20950/com.pixelnx.sam.jobportal E/front tempUri: content://com.estrongs.files/storage/emulated/0/Download/PerfectLawyer.docx
-10-26 17:27:04.611 20950-20950/com.pixelnx.sam.jobportal E/PDFFILEZILA: content://com.estrongs.files/storage/emulated/0/Download/PerfectLawyer.docx
-10-26 17:27:04.622 20950-20950/com.pixelnx.sam.jobportal E/extensionResume: docx
-
-
-10-26 17:27:38.687 20950-20950/com.pixelnx.sam.jobportal E/front tempUri: content://com.android.providers.downloads.documents/document/raw%3A%2Fstorage%2Femulated%2F0%2FDownload%2Fvarun.doc
-10-26 17:27:38.687 20950-20950/com.pixelnx.sam.jobportal E/PDFFILEZILA: content://com.android.providers.downloads.documents/document/raw%3A%2Fstorage%2Femulated%2F0%2FDownload%2Fvarun.doc
-10-26 17:27:38.698 20950-20950/com.pixelnx.sam.jobportal E/extensionResume: doc
-*/
