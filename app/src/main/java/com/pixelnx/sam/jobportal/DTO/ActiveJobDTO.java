@@ -221,6 +221,12 @@ public class ActiveJobDTO implements Serializable {
             this.process = process;
         }
 
+
+
+        public boolean isIs_applied() {
+            return is_applied;
+        }
+
         public String getCreated_at() {
             return created_at;
         }
