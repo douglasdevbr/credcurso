@@ -22,7 +22,7 @@
             android:layout_weight="0.9"
             android:backgroundTint="@color/white"
             android:cursorVisible="true"
-            android:hint="Search"
+            android:hint="Busca"
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:maxLines="1"

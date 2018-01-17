@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:text="Job Portal"
+                android:text="DigitalBank"
                 android:textColor="@color/white" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>

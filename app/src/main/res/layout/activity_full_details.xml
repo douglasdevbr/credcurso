@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Job Detail"
+                android:text="Curso"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -176,7 +176,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
-                            android:text="Job posted: " />
+                            android:text="Exatas Graduação: " />
 
                         <com.pixelnx.sam.jobportal.utils.CustomTextview
                             android:id="@+id/tvJobposted"
@@ -196,7 +196,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
-                            android:text="Job Type: " />
+                            android:text="Tecnologia da informação: " />
 
                         <com.pixelnx.sam.jobportal.utils.CustomTextview
                             android:id="@+id/tvJobtype"
@@ -217,7 +217,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
-                            android:text="Designation: "
+                            android:text="Tecnólogo: "
                             android:textSize="14dp" />
 
                         <com.pixelnx.sam.jobportal.utils.CustomTextview
@@ -239,7 +239,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
-                            android:text="Qualification: " />
+                            android:text="Presencial: " />
 
                         <com.pixelnx.sam.jobportal.utils.CustomTextview
                             android:id="@+id/tvQualification"
@@ -260,7 +260,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
-                            android:text="Specialization: " />
+                            android:text="5 Semestres: " />
 
                         <com.pixelnx.sam.jobportal.utils.CustomTextview
                             android:id="@+id/tvSpecialization"
@@ -280,7 +280,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
-                            android:text="Last date of application: " />
+                            android:text="Noturno: " />
 
                         <com.pixelnx.sam.jobportal.utils.CustomTextview
                             android:id="@+id/tvlastDOA"
@@ -301,7 +301,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"
-                            android:text="Job Description: "
+                            android:text="Sâo Paulo - Itaquera: "
                             android:visibility="visible" />
 
 
@@ -327,7 +327,7 @@
                     <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Job Hiring Process: "
+                        android:text="Status: "
                         android:visibility="gone" />
 
                     <ListView
@@ -348,7 +348,7 @@
                     android:layout_marginBottom="25dp"
                     android:layout_marginTop="25dp"
                     android:background="@drawable/button_background"
-                    android:text="APPLY"
+                    android:text="Quero Financiamento "
                     android:textColor="@color/white" />
 
 

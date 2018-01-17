@@ -72,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:layout_weight="0.04"
-                        android:text="Male"
+                        android:text="Masculino"
                         android:textColor="@color/colorPrimary" />
 
                     <RadioButton
@@ -81,7 +81,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:layout_weight="0.04"
-                        android:text="Female"
+                        android:text="Feminino"
                         android:textColor="@color/colorPrimary" />
                 </RadioGroup>
 
@@ -109,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="YOUR NAME" />
+                    android:text="NOME" />
 
 
                 <com.pixelnx.sam.jobportal.utils.CustomEdittext
@@ -124,7 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="MOBILE NO." />
+                    android:text="CELULAR" />
 
                 <com.pixelnx.sam.jobportal.utils.CustomEdittext
                     android:id="@+id/etMobile"
@@ -137,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="CURRENT ADDRESS *" />
+                    android:text="ENDEREÇO  *" />
 
                 <com.pixelnx.sam.jobportal.utils.CustomEdittext
                     android:id="@+id/etCurrentAddress"
@@ -145,7 +145,7 @@
                     android:layout_height="40dp"
                     android:inputType="text" />
 
-                <com.pixelnx.sam.jobportal.utils.CustomTextview
+               <!-- <com.pixelnx.sam.jobportal.utils.CustomTextview
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -346,14 +346,14 @@
                         android:singleLine="true"
                         android:inputType="text" />
 
-                </LinearLayout>
+                </LinearLayout> -->
 
 
                 <com.pixelnx.sam.jobportal.utils.CustomTextview
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="UPLOAD RESUME *" />
+                    android:text="COMPROVANTE ENDEREÇO  *" />
 
                 <com.pixelnx.sam.jobportal.utils.CustomEdittext
                     android:id="@+id/etFileUpload"
@@ -371,7 +371,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/button_background"
-                    android:text="UPDATE"
+                    android:text="ATUALIZAR"
                     android:textColor="@color/white" />
 
 

@@ -4,19 +4,19 @@
         <item
             android:id="@+id/Jobs"
             android:icon="@drawable/jobs"
-            android:title="Jobs" />
+            android:title="Cursos" />
 
         <item
             android:id="@+id/profile"
             android:icon="@drawable/setting"
-            android:title="Profile Setting" />
+            android:title="Meu perfil" />
         <item
             android:id="@+id/changepass"
             android:icon="@drawable/change"
-            android:title="Change Password" />
+            android:title="Alterar Senha" />
         <item
             android:id="@+id/signout"
             android:icon="@drawable/sign_out"
-            android:title="Sign Out" />
+            android:title="Sair" />
     </group>
 </menu>

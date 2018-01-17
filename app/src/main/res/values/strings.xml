@@ -1,23 +1,23 @@
 <resources>
-    <string name="app_name">Job Portal</string>
+    <string name="app_name">DigitalBank Uni</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="msg_dialog">Are you sure,want to close Job Portal?</string>
-    <string name="logout_dialog">Are you sure,want to Sign Out Job Portal?</string>
-    <string name="yes_dialog">Yes!</string>
-    <string name="no_dialog">No</string>
+    <string name="msg_dialog">Tem certeza que deseja sair?</string>
+    <string name="logout_dialog">Tem certeza que deseja sair?</string>
+    <string name="yes_dialog">Sim!</string>
+    <string name="no_dialog">Não</string>
 
 
     <string name="button_allow">Allow</string>
     <string name="button_deny">Deny</string>
-    <string name="permission_pick_rationale">READ_EXTERNAL_STORAGE permission is needed to pick image.</string>
-    <string name="permission_crop_rationale">WRITE_EXTERNAL_STORAGE permission is needed to save cropped image.</string>
-    <string name="internet_connection">Please enable your internet connection.</string>
+    <string name="permission_pick_rationale">DigitalBank Uni sem permissão de ler imagens.</string>
+    <string name="permission_crop_rationale">WDigitalBank Uni sem permissão de salvar imagens.</string>
+    <string name="internet_connection">Sem acesso a internet.</string>
 
 
     <string name="alert_dialog_title">Please Select</string>
-    <string name="positive_button_text">Select</string>
-    <string name="negative_button_text">Cancel</string>
+    <string name="positive_button_text">Selecione</string>
+    <string name="negative_button_text">Cancelar</string>
     <string name="cant_futuer_date">Can\'t select future date</string>
     <string name="no_job_found">No Job Found</string>
     <string name="please_post_a_job">Please Post A Job</string>
@@ -34,11 +34,11 @@
     <string name="val_designation">Please select Designation</string>
     <string name="val_job_type">Please select Job type</string>
 
-    <string name="pwd_required_validation">Please Enter Password.</string>
-    <string name="confirm_pwd_required_validation">Please Enter Confirm Password.</string>
-    <string name="confirm_pwd_validation">Password and Confirm Password doesn\'t match.</string>
+    <string name="pwd_required_validation">Insira uma senha.</string>
+    <string name="confirm_pwd_required_validation">Confirme a senha.</string>
+    <string name="confirm_pwd_validation">Erro as senhas precisam ser iguais.</string>
     <string name="apply_job">Please update Profile for Applying Jobs</string>
-    <string name="val_email">Please enter valid email</string>
+    <string name="val_email">Insira um email válido</string>
     <string name="val_duration">Please select Duration</string>
     <string name="val_vacancies">Please enter no. of vacancies</string>
     <string name="val_skills">Please enter Required Skills</string>

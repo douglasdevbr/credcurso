@@ -68,9 +68,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         etEmail = (CustomEdittext) findViewById(R.id.etEmail);
         etPassword = (CustomEdittext) findViewById(R.id.etPassword);
 
-        String first = "DON'T HAVE AN ACCOUNT? ";
-        String next = "<font color='#7062E9'><b>SIGN UP</b></font>";
-        String guest = "<font color='#7062E9'><u><b>GUEST LOGIN</b></u></font>";
+        String first = "Ainda nao possui conta? ";
+        String next = "<font color='#7062E9'><b>CADASTRE-SE</b></font>";
+        String guest = "<font color='#7062E9'><u><b>VAGAS DISPONIVEIS</b></u></font>";
 
         tvForgotpass = (CustomTextview) findViewById(R.id.tvForgotpass);
         tvCreatnewaccount = (CustomTextview) findViewById(R.id.tvCreatnewaccount);
@@ -135,7 +135,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public boolean ValidateEmail() {
         if (!ProjectUtils.IsEmailValidation(etEmail.getText().toString().trim())) {
-            etEmail.setError("Please enter valid email");
+            etEmail.setError("Por favor use  um email válido");
             etEmail.requestFocus();
             return false;
         }
@@ -144,12 +144,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public boolean validatePassword() {
         if (etPassword.getText().toString().trim().equalsIgnoreCase("")) {
-            etPassword.setError("Please enter password");
+            etPassword.setError("Insira sua senha");
             etPassword.requestFocus();
             return false;
         } else {
             if (!ProjectUtils.IsPasswordValidation(etPassword.getText().toString().trim())) {
-                etPassword.setError("please enter 6 digit password");
+                etPassword.setError("Insira uma senha de 6 digitos");
                 etPassword.requestFocus();
                 return false;
             } else {
@@ -161,7 +161,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public boolean SelectType() {
 
         if (radioGroup.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(getApplicationContext(), "Please select Type", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Selecione um tipo", Toast.LENGTH_SHORT).show();
             return false;
         } else {
             return true;
@@ -187,7 +187,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void seekerlogin() {
-        ProjectUtils.showProgressDialog(mContext, false, "Please wait...");
+        ProjectUtils.showProgressDialog(mContext, false, "Aguarde...");
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Consts.BASE_URL + Consts.LOGIN_API_SEEKER,
                 new Response.Listener<String>() {
                     @Override

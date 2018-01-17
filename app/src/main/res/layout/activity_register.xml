@@ -13,7 +13,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="SIGN UP"
+        android:text="CADASTRO"
         android:textColor="@color/colorPrimary" />
 
     <LinearLayout
@@ -21,25 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
 
-        <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
-            android:id="@+id/tvSeeker"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:text="SEEKER"
-            android:textColor="@color/colorPrimary" />
-
-        <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
-            android:id="@+id/tvRecruiter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:text="RECRUITER"
-            android:textColor="@color/colorPrimary" />
     </LinearLayout>
 
     <FrameLayout

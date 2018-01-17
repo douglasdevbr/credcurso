@@ -19,7 +19,7 @@ import com.pixelnx.sam.jobportal.utils.Consts;
 import io.fabric.sdk.android.Fabric;
 
 /**
- * Created by varunverma on 27/9/17.
+
  */
 
 public class Splash extends AppCompatActivity {

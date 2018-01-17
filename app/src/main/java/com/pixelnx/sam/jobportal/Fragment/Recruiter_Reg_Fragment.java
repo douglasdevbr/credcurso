@@ -53,7 +53,7 @@ public class Recruiter_Reg_Fragment extends Fragment implements View.OnClickList
         etPassword =(CustomEdittext)  view.findViewById(R.id.etPassword);
         etCPassword = (CustomEdittext)  view.findViewById(R.id.etCPassword);
 
-        String first = "ALREADY HAVE AN ACCOUNT ? ";
+        String first = "JA POSSUI UMA CONTA ? ";
         String next = "<font color='#7062E9'><b>LOGIN</b></font>";
         tvAlreadyRegister = (CustomTextview) view.findViewById(R.id.tvAlreadyRegister);
         tvAlreadyRegister.setText(Html.fromHtml(first + next));

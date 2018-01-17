@@ -55,8 +55,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
 
 
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        RBSeeker = (RadioButton) findViewById(R.id.RBSeeker);
-        RBRecruiter = (RadioButton) findViewById(R.id.RBRecruiter);
         btnSubmit = (CustomButton) findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(this);
 
@@ -75,9 +73,8 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
     public void submitForm() {
         if (!ValidateEmail()) {
             return;
-        }  else if (!SelectType()) {
-            return;
-        } else {
+        }
+        else {
             if (NetworkManager.isConnectToInternet(mContext)) {
                 updatepass();
 
@@ -98,27 +95,14 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
     }
 
 
-    public boolean SelectType() {
-
-        if (radioGroup.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(getApplicationContext(), "Please select Type", Toast.LENGTH_SHORT).show();
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     public void updatepass() {
-        if (RBSeeker.isChecked()) {
+
             forgotpass();
-        }
-        if (RBRecruiter.isChecked()) {
-            forgotpass();
-        }
+
     }
 
     public void forgotpass() {
-        ProjectUtils.showProgressDialog(mContext, false, "Please wait...");
+        ProjectUtils.showProgressDialog(mContext, false, "Aguarde...");
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Consts.BASE_URL + Consts.FORGOT_PASSWORD,
                 new Response.Listener<String>() {
                     @Override
@@ -151,13 +135,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-                if (RBRecruiter.isChecked()) {
-                    params.put(Consts.ROLE, "1");
-
-                } else if (RBSeeker.isChecked()) {
-                    params.put(Consts.ROLE, "0");
-
-                }
+                 params.put(Consts.ROLE, "1");
 
                 params.put(Consts.EMAIL, ProjectUtils.getEditTextValue(etEmail));
                 return params;

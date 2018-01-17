@@ -14,7 +14,7 @@
         <com.pixelnx.sam.jobportal.utils.CustomTextview
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OLD PASSWORD" />
+            android:text="SENHA ANTIGA" />
 
         <com.pixelnx.sam.jobportal.utils.CustomEdittext
             android:id="@+id/etOldPassword"
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="NEW PASSWORD" />
+            android:text="NOVA SENHA" />
 
         <com.pixelnx.sam.jobportal.utils.CustomEdittext
             android:id="@+id/etNewPassword"
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="CONFIRM PASSWORD" />
+            android:text="CONFIRMAR SENHA" />
 
         <com.pixelnx.sam.jobportal.utils.CustomEdittext
             android:id="@+id/etConfirmNewPassword"
@@ -54,7 +54,7 @@
             android:id="@+id/UpdateBtn"
             android:layout_width="180dp"
             android:layout_height="40dp"
-            android:text="UPDATE"
+            android:text="ATUALIZAR"
             android:textColor="@color/white"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"

@@ -166,38 +166,38 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
 
     private void init(View view) {
 
-        LLexperince = (LinearLayout) view.findViewById(R.id.LLexperince);
+       // LLexperince = (LinearLayout) view.findViewById(R.id.LLexperince);
         IVimage = (CircleImageView) view.findViewById(R.id.IVimage);
         etEmail = (CustomEdittext) view.findViewById(R.id.etEmail);
         etName = (CustomEdittext) view.findViewById(R.id.etName);
         etMobile = (CustomEdittext) view.findViewById(R.id.etMobile);
-        etCgpa = (CustomEdittext) view.findViewById(R.id.etCgpa);
+      //  etCgpa = (CustomEdittext) view.findViewById(R.id.etCgpa);
         etFileUpload = (CustomEdittext) view.findViewById(R.id.etFileUpload);
         etCurrentAddress = (CustomEdittext) view.findViewById(R.id.etCurrentAddress);
-        etPassYear = (CustomEdittext) view.findViewById(R.id.etPassYear);
-        etCertification = (CustomEdittext) view.findViewById(R.id.etCertification);
+       // etPassYear = (CustomEdittext) view.findViewById(R.id.etPassYear);
+       // etCertification = (CustomEdittext) view.findViewById(R.id.etCertification);
         tvUsername = (CustomTextSubHeader) view.findViewById(R.id.tvUsername);
 
-        SpRoleType = (Spinner) view.findViewById(R.id.SpRoleType);
-        SpPrefLoc = (Spinner) view.findViewById(R.id.SpPrefLoc);
-        SpJobType = (Spinner) view.findViewById(R.id.SpJobType);
-        SpQualification = (Spinner) view.findViewById(R.id.SpQualification);
-        SpAreaOfSector = (Spinner) view.findViewById(R.id.SpAreaOfSector);
-        SpSpecialization = (Spinner) view.findViewById(R.id.SpSpecialization);
-        SpTotalExperienceYear = (Spinner) view.findViewById(R.id.SpTotalExperienceYear);
-        SpToatlExperienceinMonth = (Spinner) view.findViewById(R.id.SpExperienceinMonth);
+        //SpRoleType = (Spinner) view.findViewById(R.id.SpRoleType);
+        //SpPrefLoc = (Spinner) view.findViewById(R.id.SpPrefLoc);
+        //SpJobType = (Spinner) view.findViewById(R.id.SpJobType);
+        //SpQualification = (Spinner) view.findViewById(R.id.SpQualification);
+        //SpAreaOfSector = (Spinner) view.findViewById(R.id.SpAreaOfSector);
+        //SpSpecialization = (Spinner) view.findViewById(R.id.SpSpecialization);
+        //SpTotalExperienceYear = (Spinner) view.findViewById(R.id.SpTotalExperienceYear);
+        //SpToatlExperienceinMonth = (Spinner) view.findViewById(R.id.SpExperienceinMonth);
 
         RGGender = (RadioGroup) view.findViewById(R.id.RGGender);
         RBmale = (RadioButton) view.findViewById(R.id.RBmale);
         RBfemale = (RadioButton) view.findViewById(R.id.RBfemale);
 
-        RGExperience = (RadioGroup) view.findViewById(R.id.RGExperience);
-        RBFresher = (RadioButton) view.findViewById(R.id.RBFresher);
-        RBExperinced = (RadioButton) view.findViewById(R.id.RBExperinced);
+        //RGExperience = (RadioGroup) view.findViewById(R.id.RGExperience);
+        //RBFresher = (RadioButton) view.findViewById(R.id.RBFresher);
+        //RBExperinced = (RadioButton) view.findViewById(R.id.RBExperinced);
         btnUpdate = (CustomButton) view.findViewById(R.id.btnUpdate);
 
 
-        SpPrefLoc.setOnItemSelectedListener(this);
+        /*SpPrefLoc.setOnItemSelectedListener(this);
         SpJobType.setOnItemSelectedListener(this);
         SpRoleType.setOnItemSelectedListener(this);
         SpQualification.setOnItemSelectedListener(this);
@@ -206,12 +206,12 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
         SpToatlExperienceinMonth.setOnItemSelectedListener(this);
         SpTotalExperienceYear.setOnItemSelectedListener(this);
         RBExperinced.setOnClickListener(this);
-        RBFresher.setOnClickListener(this);
+        RBFresher.setOnClickListener(this);*/
         etFileUpload.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
         etPassYear.setOnClickListener(this);
 
-        etCgpa.setFilters(new InputFilter[]{
+       /* etCgpa.setFilters(new InputFilter[]{
                 new DigitsKeyListener(Boolean.FALSE, Boolean.TRUE) {
                     int beforeDecimal = 2, afterDecimal = 2;
 
@@ -237,7 +237,7 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
                         return super.filter(source, start, end, dest, dstart, dend);
                     }
                 }
-        });
+        });*/
 
 
         etEmail.setText(userSeekerDTO.getData().getEmail());
@@ -668,7 +668,7 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
             case R.id.etFileUpload:
                 showFileChooser();
                 break;
-            case R.id.RBExperinced:
+           /* case R.id.RBExperinced:
                 LLexperince.setVisibility(View.VISIBLE);
                 //  updateExperince();
                 break;
@@ -676,9 +676,9 @@ public class SeekerUpdateProfileFragment extends Fragment implements View.OnClic
                 LLexperince.setVisibility(View.GONE);
                 break;
             case R.id.etPassYear:
-                myp.show();
+                myp.show();*/
                 //   ProjectUtils.datePicker(myCalendar, getActivity(), etPassYear, false);
-                break;
+              // break;
         }
     }
 

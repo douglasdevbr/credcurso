@@ -68,7 +68,7 @@
                             android:layout_height="30dp"
                             android:layout_gravity="center_vertical"
                             android:background="@drawable/button_background"
-                            android:text="VIEW"
+                            android:text="Ver"
                             android:textColor="@color/white" />
                     </LinearLayout>
                 </LinearLayout>

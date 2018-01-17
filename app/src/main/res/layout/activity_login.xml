@@ -36,8 +36,8 @@
                 android:layout_gravity="left"
                 android:layout_marginLeft="40dp"
                 android:layout_weight="0.05"
-                android:text="SEEKER"
                 android:checked="true"
+                android:text="Aluno"
                 android:textColor="@color/colorPrimary" />
 
             <RadioButton
@@ -47,7 +47,7 @@
                 android:layout_gravity="right"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="0.05"
-                android:text="RECRUITER"
+                android:text="Gestor"
                 android:textColor="@color/colorPrimary" />
         </RadioGroup>
 
@@ -64,7 +64,7 @@
         <com.pixelnx.sam.jobportal.utils.CustomTextviewBold
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="YOUR EMAIL" />
+            android:text="SEU EMAIL" />
 
         <com.pixelnx.sam.jobportal.utils.CustomEdittext
             android:id="@+id/etEmail"
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="PASSWORD" />
+            android:text="SENHA" />
 
         <com.pixelnx.sam.jobportal.utils.CustomEdittext
             android:id="@+id/etPassword"
@@ -90,11 +90,11 @@
 
         <com.pixelnx.sam.jobportal.utils.CustomTextview
             android:id="@+id/tvForgotpass"
-            android:layout_width="wrap_content"
+            android:layout_width="211dp"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginTop="10dp"
-            android:text="FORGOT PASSWORD?"
+            android:text="ESQUECI  MINHA SENHA :("
             android:textColor="#7062E9"
             android:textSize="16dp" />
 

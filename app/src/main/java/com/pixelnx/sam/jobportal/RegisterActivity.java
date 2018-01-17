@@ -11,7 +11,7 @@ import com.pixelnx.sam.jobportal.Fragment.Recruiter_Reg_Fragment;
 import com.pixelnx.sam.jobportal.Fragment.Seeker_Reg_Fragment;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView tvSeeker, tvRecruiter;
+
     private FragmentManager fm;
     private Seeker_Reg_Fragment seekerRegFragment = new Seeker_Reg_Fragment();
     private Recruiter_Reg_Fragment recruiterFragment = new Recruiter_Reg_Fragment();
@@ -22,19 +22,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.frame, seekerRegFragment, "").commit();
-        tvSeeker = (TextView) findViewById(R.id.tvSeeker);
-        tvRecruiter = (TextView) findViewById(R.id.tvRecruiter);
-        tvSeeker.setOnClickListener(this);
-        tvRecruiter.setOnClickListener(this);
-        tvSeeker.setTextColor(Color.rgb(106, 100, 231));
-        tvRecruiter.setTextColor(Color.rgb(204, 202, 247));
+        fm.beginTransaction().replace(R.id.frame, recruiterFragment, "").commit();
+
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tvSeeker:
+        fm.beginTransaction().replace(R.id.frame, recruiterFragment, "").commit();
+        /* switch (v.getId()) {
+           case R.id.tvSeeker:
                 fm.beginTransaction().replace(R.id.frame, seekerRegFragment, "").commit();
                 tvSeeker.setTextColor(Color.rgb(106, 100, 231));
                 tvRecruiter.setTextColor(Color.rgb(204, 202, 247));
@@ -43,9 +39,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 fm.beginTransaction().replace(R.id.frame, recruiterFragment, "").commit();
                 tvSeeker.setTextColor(Color.rgb(204, 202, 247));
                 tvRecruiter.setTextColor(Color.rgb(106, 100, 231));
-                break;
+                break;*/
         }
+
+
     }
 
 
-}
+
